@@ -73,11 +73,10 @@ object Logalyzer extends App with JsonProtocol{
           ContentTypes.`application/json`,
           response.toJson.prettyPrint
         )
-      )
+      ).addHeader(`Access-Control-Allow-Origin`.*)
 
     case HttpRequest(HttpMethods.POST, Uri.Path("/api/data"), _, entity, _) =>
-      val payload= entity
-      println(payload)
+
       try {
         //        have to remove after test
         val response = generateDataResponse("Jul 23 23:24:09", "Jul 27 23:24:09", "connection", fileFullPath)
@@ -87,7 +86,7 @@ object Logalyzer extends App with JsonProtocol{
             ContentTypes.`application/json`,
             response.toJson.prettyPrint
           )
-        )
+        ).addHeader(`Access-Control-Allow-Origin`.*)
 
       } catch {
         case e: ClassCastException => HttpResponse(
@@ -96,7 +95,7 @@ object Logalyzer extends App with JsonProtocol{
             ContentTypes.`application/json`,
             Error(message = "Invalid Request Body, Please Provide Proper Body").toJson.prettyPrint
           )
-        )
+        ).addHeader(`Access-Control-Allow-Origin`.*)
       }
 
 
@@ -112,7 +111,7 @@ object Logalyzer extends App with JsonProtocol{
             ContentTypes.`application/json`,
             response.toJson.prettyPrint
           )
-        )
+        ).addHeader(`Access-Control-Allow-Origin`.*)
 
       } catch {
         case e: ClassCastException => HttpResponse(
@@ -121,7 +120,7 @@ object Logalyzer extends App with JsonProtocol{
             ContentTypes.`application/json`,
             Error(message = "Invalid Request Body, Please Provide Proper Body").toJson.prettyPrint
           )
-        )
+        ).addHeader(`Access-Control-Allow-Origin`.*)
       }
 
     case request: HttpRequest =>
@@ -132,7 +131,7 @@ object Logalyzer extends App with JsonProtocol{
           ContentTypes.`application/json`,
           Error(message = "Invalid route. Possible Routes[/api/get_data, /api/get_size, /api/data, /api/histogram,]").toJson.prettyPrint
         )
-      )
+      ).addHeader(`Access-Control-Allow-Origin`.*)
   }
   Http().bindAndHandleSync(requestHandler, host, port)
 }
