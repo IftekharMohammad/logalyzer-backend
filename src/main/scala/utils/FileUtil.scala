@@ -1,6 +1,6 @@
 package utils
 
-import server.{Data, DataResponse, HighlightPosition, Histogram, HistogramResponse, Size, Status}
+import models.{Data, DataResponse, HighlightPosition, Histogram, HistogramResponse, Size, Status}
 
 import java.io.{File, FileNotFoundException, IOException}
 import java.text.SimpleDateFormat
