@@ -17,5 +17,10 @@ A Simple Linux Log Analyzer
 * Akka Http CORS [0.4.0]
 * Akka Http [2.5.20]
 
+# Servers
+* Logalyzer: This is the main server. It is done with High Level API
+* LogalyzerLow: This is a server implementation done wilt Low Level API. This implementation is synchronous
+* LogalyzerLowAsync: This is a server implementation done wilt Low Level API. This implementation is Asynchronous
+
 # Log File Used For Testing
 Added in reps as messages.log.text
