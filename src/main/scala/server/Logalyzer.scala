@@ -5,7 +5,6 @@ import actors.DataProcessor.{GetGeneratedDataResponse, GetGeneratedHistogramResp
 import akka.actor.{ActorSystem, Props}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import akka.http.scaladsl.model.headers.HttpOriginRange
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpResponse, StatusCodes}
 import akka.http.scaladsl.server.Directives.{entity, _}
 import akka.http.scaladsl.server.Route
@@ -19,7 +18,6 @@ import spray.json.enrichAny
 import utils.FileUtil.{getFileSize, getStatus}
 
 import scala.concurrent.duration.DurationInt
-import spray.json._
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import ch.megard.akka.http.cors.scaladsl.model.HttpOriginMatcher
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
@@ -44,6 +42,7 @@ object Logalyzer extends App with JsonProtocol with SprayJsonSupport {
   val fileFullPath = loadedConfig.getValue("file_location").render().replaceAll("\"", "")
 
   val corsSettings = CorsSettings.defaultSettings.withAllowGenericHttpRequests(true)
+  val corsSettingsWithOrigin = corsSettings.withAllowedOrigins(HttpOriginMatcher.*)
 
 
   val route: Route = cors(corsSettings) {
