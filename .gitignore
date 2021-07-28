@@ -86,6 +86,7 @@ fabric.properties
 
 # Log file
 *.log
+!messages.log
 
 # BlueJ files
 *.ctxt
@@ -119,7 +120,8 @@ project/plugins/project/
 .cache
 .lib/
 .idea/
-./bsp
+.bsp
+null
 ### Scala ###
 
 # End of https://www.gitignore.io/api/sbt,java,scala,intellij
