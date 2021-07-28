@@ -18,7 +18,7 @@ import scala.concurrent.duration.DurationInt
 import spray.json._
 
 
-object LogalyzerLowAsync extends App with JsonProtocol {
+object LogalyzerLowAsync extends JsonProtocol {
 
   val config = ConfigFactory.load()
   val loadedConfig = config.getConfig("logalyzer")

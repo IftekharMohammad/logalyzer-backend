@@ -20,3 +20,5 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
   "org.scalatest" %% "scalatest" % scalaTestVersion
 )
+
+enablePlugins(JavaAppPackaging)

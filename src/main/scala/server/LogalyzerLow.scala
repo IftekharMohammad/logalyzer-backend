@@ -14,7 +14,7 @@ import traits.JsonProtocol
 
 
 
-object LogalyzerLow extends App with JsonProtocol{
+object LogalyzerLow extends JsonProtocol{
 
   val config = ConfigFactory.load()
   val loadedConfig = config.getConfig("logalyzer")
