@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/logalyzer-backend
+web: target/universal/stage/bin/logalyzer-backend -Dhttp.port=8080
