@@ -38,7 +38,7 @@ object Logalyzer extends App with JsonProtocol with SprayJsonSupport {
   val config = ConfigFactory.load()
   val loadedConfig = config.getConfig("logalyzer")
   val host = loadedConfig.getValue("host").render().replaceAll("\"", "")
-  val port = System.getenv().asScala.getOrElse("-Dhttp.port", loadedConfig.getValue("port").render().replaceAll("\"", "")).toInt
+  val port = System.getenv().asScala.getOrElse("-Dhttp.port", scala.util.Properties.envOrElse("PORT", loadedConfig.getValue("port").render().replaceAll("\"", ""))).toInt
   val fileFullPath = loadedConfig.getValue("file_location").render().replaceAll("\"", "")
 
   val corsSettings = CorsSettings.defaultSettings.withAllowGenericHttpRequests(true)
