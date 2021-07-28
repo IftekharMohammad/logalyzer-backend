@@ -23,7 +23,7 @@ import ch.megard.akka.http.cors.scaladsl.model.HttpOriginMatcher
 import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 
 import scala.concurrent.Future
-
+import scala.collection.JavaConverters._
 
 object Logalyzer extends App with JsonProtocol with SprayJsonSupport {
 
@@ -38,8 +38,7 @@ object Logalyzer extends App with JsonProtocol with SprayJsonSupport {
   val config = ConfigFactory.load()
   val loadedConfig = config.getConfig("logalyzer")
   val host = loadedConfig.getValue("host").render().replaceAll("\"", "")
-  val port = sys.env.getOrElse("PORT", loadedConfig.getValue("port").render().replaceAll("\"", "").toInt)
-
+  val port = System.getenv().asScala.getOrElse("-Dhttp.port", loadedConfig.getValue("port").render().replaceAll("\"", "")).toInt
   val fileFullPath = loadedConfig.getValue("file_location").render().replaceAll("\"", "")
 
   val corsSettings = CorsSettings.defaultSettings.withAllowGenericHttpRequests(true)
